@@ -12,12 +12,16 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "io.qameta.allure:allure-gradle:2.5"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
     }
 }
+
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: "io.qameta.allure"
+apply plugin : "org.sonarqube"
+
 
 allure {
     autoconfigure = true
