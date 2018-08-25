@@ -33,7 +33,7 @@ public class ApplicationControllerTest {
 
     @Test
     public void shouldGreet() {
-        assertThat(subject.hello()).isEqualTo("Hello World!");
+        assertThat(subject.hello()).isEqualTo("Hello!");
     }
 
     @Test
