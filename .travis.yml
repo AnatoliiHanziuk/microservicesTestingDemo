@@ -2,6 +2,8 @@ language: java
 jdk:
 - oraclejdk8
 script: gradle clean build
+notifications:
+      slack: my-microservices:xzvzrK0PW84Kaw9kHuC4P296
 env:
   global:
   - BUILD_TAG=$TRAVIS_REPO_SLUG+$TRAVIS_BUILD_NUMBER
