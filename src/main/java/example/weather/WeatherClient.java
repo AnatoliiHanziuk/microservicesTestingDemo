@@ -1,4 +1,4 @@
-package weather;
+package example.weather;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

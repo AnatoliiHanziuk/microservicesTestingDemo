@@ -1,10 +1,12 @@
-import models.User;
-import models.UserRepository;
+package example;
+
+import example.user.User;
+import example.user.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import weather.WeatherClient;
-import weather.WeatherResponse;
+import example.weather.WeatherClient;
+import example.weather.WeatherResponse;
 
 import java.util.Optional;
 
@@ -12,12 +14,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class ApplicationControllerTest {
+public class ExampleApplicationControllerTest {
 
     private static final String LATITUDE = "50.0647";
     private static final String LONGTITUDE = "19.9450";
 
-    private ApplicationController subject;
+    private ExampleApplicationController subject;
 
     @Mock
     private UserRepository userRepository;
@@ -28,7 +30,7 @@ public class ApplicationControllerTest {
     @Before
     public void setUp() {
         initMocks(this);
-        subject = new ApplicationController(userRepository, weatherClient);
+        subject = new ExampleApplicationController(userRepository, weatherClient);
     }
 
     @Test
@@ -39,7 +41,7 @@ public class ApplicationControllerTest {
     @Test
     public void shouldReturnFullNameOfUser() {
         User user = new User("Peter", "Pan");
-        given(userRepository.findByLatName("Pan")).willReturn(Optional.of(user));
+        given(userRepository.findByLastName("Pan")).willReturn(Optional.of(user));
 
         String greeting = subject.hello("Pan");
 
@@ -48,7 +50,7 @@ public class ApplicationControllerTest {
 
     @Test
     public void shouldTellUserIsUNknown() {
-        given(userRepository.findByLatName("Pan")).willReturn(Optional.empty());
+        given(userRepository.findByLastName("Pan")).willReturn(Optional.empty());
 
         String greeting = subject.hello("Pan");
 
