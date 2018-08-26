@@ -37,7 +37,7 @@ public class ExampleApplicationController {
                 .orElse(String.format("User with last name %s is not found", lastName));
     }
 
-    @GetMapping("/example/weather/{latitude}/{longtitude}")
+    @GetMapping("/weather/{latitude},{longtitude:.+}")
     public String getWeather(@PathVariable final String latitude, @PathVariable final String longtitude) {
         return weatherClient.fetchWeather(latitude, longtitude).map(WeatherResponse::getSummary)
                 .orElse("Sorry, I couldn't fetch the weather for you :(");
