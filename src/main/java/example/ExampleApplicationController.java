@@ -3,9 +3,7 @@ package example;
 import example.user.User;
 import example.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import example.weather.WeatherClient;
 import example.weather.WeatherResponse;
 
@@ -23,12 +21,12 @@ public class ExampleApplicationController {
         this.weatherClient = weatherClient;
     }
 
-    @GetMapping("/hello")
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
         return "Hello!";
     }
 
-    @GetMapping("/user/{lastName}")
+    @RequestMapping(value = "/user/{lastName}", method = RequestMethod.GET)
     public String hello(@PathVariable final String lastName) {
         Optional<User> foundUser = userRepository.findByLastName(lastName);
 
@@ -37,7 +35,7 @@ public class ExampleApplicationController {
                 .orElse(String.format("User with last name %s is not found", lastName));
     }
 
-    @GetMapping("/weather/{latitude},{longtitude:.+}")
+    @RequestMapping(value = "/weather/{latitude},{longtitude:.+}", method = RequestMethod.GET)
     public String getWeather(@PathVariable final String latitude, @PathVariable final String longtitude) {
         return weatherClient.fetchWeather(latitude, longtitude).map(WeatherResponse::getSummary)
                 .orElse("Sorry, I couldn't fetch the weather for you :(");
